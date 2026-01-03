@@ -1,6 +1,6 @@
 *{
   direction: rtl;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Alexandria',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
   text-align: right;
 }
 body{
@@ -10,4 +10,67 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/public/fonts/Alexandria-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
 }
