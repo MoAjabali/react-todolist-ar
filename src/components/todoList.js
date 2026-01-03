@@ -32,7 +32,7 @@ export default function TodoList() {
 
   return(
     <>
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Stack 
           direction="column"
           spacing={2}
@@ -42,7 +42,10 @@ export default function TodoList() {
           }} 
           style={{
             background: "white",
-            width: "375px"
+            width: "375px",
+            margin: "4px",
+            padding: "8px 4px",
+            borderRadius: "8px",
           }}
         >
           <TaskContext.Provider value={{tasks, setTasks}}>

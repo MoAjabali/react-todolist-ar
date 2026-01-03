@@ -10,10 +10,13 @@ import EditTaskDialog from "./EditTaskDialog";
 
 export default function Tasks() {
   const {tasks, setTasks} = useContext(TaskContext);
+
   const [taskType, setTaskType] = useState('all');
+
   const [delOpen, setDelOpen] = useState(false);
   const [taskToDel, setTaskToDel] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
+  
   const handelDelete = ()=>{
     setTasks((prev)=> prev.filter((t)=>t.id!==taskToDel.id));
     setTaskToDel(null);
