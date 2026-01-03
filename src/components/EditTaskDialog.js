@@ -34,8 +34,6 @@ export default function EditTaskDialog({ open, onClose, task, onSave }) {
           fullWidth
           variant="outlined"
           value={editedTitle}
-          inputProps={{dir: "rtl", style:{textAlign: 'right'}}}
-          InputLabelProps={{style: {right: 24, left: "auto"}}}
           onChange={(e) => {
             setEditedTitle(e.target.value);
             if (e.target.value.length >= 2) {
@@ -44,8 +42,23 @@ export default function EditTaskDialog({ open, onClose, task, onSave }) {
           }}
           error={!!titleError}
           helperText={titleError}
-          sx={{ mb: 2 }}
+          sx={{ 
+            mb: 2,
+            '& .MuiInputBase-input': {
+              textAlign: 'right',
+              direction: 'rtl',
+            },
+            '& .MuiInputLabel-root': {
+              transformOrigin: 'top right',
+              left: 'auto',
+              right: 26,
+            },
+            '& .MuiFormHelperText-root': {
+              textAlign: 'right',
+            }
+          }}
         />
+
         <TextField
           margin="dense"
           label="تفاصيل المهمة"
@@ -55,9 +68,19 @@ export default function EditTaskDialog({ open, onClose, task, onSave }) {
           rows={3}
           variant="outlined"
           value={editedDetails}
-          inputProps={{dir: "rtl", style:{textAlign: 'right'}}}
-          InputLabelProps={{style: {right: 24, left: "auto"}}}
           onChange={(e) => setEditedDetails(e.target.value)}
+          sx={{
+            '& .MuiInputBase-input': {
+              textAlign: 'right',
+              direction: 'rtl',
+            },
+            '& .MuiInputLabel-root': {
+              transformOrigin: 'top right',
+              left: 'auto',
+              right: 26,
+              
+            }
+          }}
         />
       </DialogContent>
       <DialogActions>

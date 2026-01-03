@@ -1,8 +1,6 @@
 import { Stack, TextField, Box, Button } from '@mui/material';
 import { useContext, useState } from 'react';
 import { TaskContext } from './contexts/taskContext';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 import SnackbarAlert from './muic/snackbarAlert';
 
 
@@ -19,13 +17,20 @@ export default function AddForm(){
   //   setOpen(false);
   //   setErrorOpen(false);
   // };
+
+  const generateID= ()=>{
+    return parseInt(Date.now() + Math.random().toString().slice(2, 6));
+
+  }
+
   const handleClick = (event)=>{
+    console.log()
     try {
       if(taskTitle.length < 2)
         throw new Error("عنوان المهمة لا يقل عن حرفين");
       setTasks([
         ...tasks, {
-          id: tasks.length+1,
+          id: generateID(),
           title: taskTitle,
           details: "",
           isComplete: false,
@@ -54,9 +59,27 @@ export default function AddForm(){
           autoComplete="off"
         >
           <TextField 
-            inputProps={{dir: "rtl", style:{textAlign: 'right'}}}
-            InputLabelProps={{style: {right: 24, left: "auto"}}}
-            id="outlined-basic" size='small' label="عنوان المهمة" variant="outlined"  value={taskTitle} onChange={(event)=>{setTaskTitle(event.target.value)}}/>
+            sx={{
+              '& .MuiInputBase-input': {
+                textAlign: 'right',
+                direction: 'rtl',
+              },
+              '& .MuiInputLabel-root': {
+                transformOrigin: 'top right',
+                left: 'auto',
+                right: 26,
+              },
+              '& .MuiOutlinedInput-notchedOutline': {
+                textAlign: 'right',
+              }
+            }}
+            id="outlined-basic" 
+            size='small' 
+            label="عنوان المهمة" 
+            variant="outlined"  
+            value={taskTitle} 
+            onChange={(event) => {setTaskTitle(event.target.value)}}
+          />
         </Box>
         <Button onClick={handleClick}  variant="contained" size='medium' color="success">إضافة</Button>
         
