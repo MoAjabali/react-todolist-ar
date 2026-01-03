@@ -24,7 +24,6 @@ export default function AddForm(){
   }
 
   const handleClick = (event)=>{
-    console.log()
     try {
       if(taskTitle.length < 2)
         throw new Error("عنوان المهمة لا يقل عن حرفين");

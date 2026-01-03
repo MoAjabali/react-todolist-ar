@@ -2,7 +2,7 @@ import { ToggleButtonGroup, ToggleButton, Box, Paper, Grid, Typography, IconButt
 import { pink } from "@mui/material/colors";
 import { Delete, Edit, CheckCircle } from "@mui/icons-material";
 import { CheckCircleOutline } from "@mui/icons-material";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { TaskContext } from "./contexts/taskContext";
 import ConfirmDeleteDialog from "./confirmDeleteDialog";
 import SnackbarAlert from "./muic/snackbarAlert";
@@ -24,9 +24,11 @@ export default function Tasks() {
     setPopupOpen(true);
   };
 
-  const filteredTask = tasks.filter((value)=>{
-    return taskType==='all' ? true : (taskType==="complete"? value.isComplete : !value.isComplete)
-  });
+  const filteredTask = useMemo(()=>{
+    return tasks.filter((value)=>{
+      return taskType==='all' ? true : (taskType==="complete"? value.isComplete : !value.isComplete)
+    })
+  }, [tasks, taskType]);
   const [editOpen, setEditOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [editSuccessOpen, setEditSuccessOpen] = useState(false);
@@ -117,7 +119,6 @@ export default function Tasks() {
       </Grid>
     </Paper>
   ));
-  console.log(filteredTask);
   return (
     <>
       <ToggleButtonGroup
