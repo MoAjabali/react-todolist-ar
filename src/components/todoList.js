@@ -3,16 +3,15 @@ import AddForm from "./addForm";
 import TodoHeader from "./todoHeader";
 import Tasks from "./tasks";
 import { TaskContext } from "./contexts/taskContext";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
+import { todoReducer } from "../reducer/todoReducer";
+
 
 
 export default function TodoList() {
-  const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem('tasks')) ?? []
-  );
+  const [tasks, dispatch] = useReducer(todoReducer, JSON.parse(localStorage.getItem('tasks')) ?? [])
 
   useEffect(()=>{
-    // if(localStorage.getItem('tasks'))
       localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks])
   return(
@@ -33,7 +32,7 @@ export default function TodoList() {
             borderRadius: "8px",
           }}
         >
-          <TaskContext.Provider value={{tasks, setTasks}}>
+          <TaskContext.Provider value={{tasks, dispatch}}>
             <TodoHeader />
             <Tasks />
             <AddForm />

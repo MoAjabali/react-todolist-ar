@@ -9,7 +9,7 @@ import SnackbarAlert from "./muic/snackbarAlert";
 import EditTaskDialog from "./EditTaskDialog";
 
 export default function Tasks() {
-  const {tasks, setTasks} = useContext(TaskContext);
+  const {tasks, dispatch} = useContext(TaskContext);
 
   const [taskType, setTaskType] = useState('all');
 
@@ -18,7 +18,7 @@ export default function Tasks() {
   const [popupOpen, setPopupOpen] = useState(false);
   
   const handelDelete = ()=>{
-    setTasks((prev)=> prev.filter((t)=>t.id!==taskToDel.id));
+    dispatch({type: "Delete", payload: { todo: taskToDel }});
     setTaskToDel(null);
     setDelOpen(false);
     setPopupOpen(true);
@@ -44,12 +44,7 @@ export default function Tasks() {
   };
 
   const handleEditSave = (newTitle, newDetails) => {
-    const updatedTasks = tasks.map(task => 
-      task.id === taskToEdit.id 
-        ? { ...task, title: newTitle, details: newDetails }
-        : task
-    );
-    setTasks(updatedTasks);
+    dispatch({type: "Update", payload: { todo: {...taskToEdit, newTitle, newDetails} }})
     setEditOpen(false);
     setTaskToEdit(null);
     setEditSuccessOpen(true);
@@ -82,18 +77,7 @@ export default function Tasks() {
             <Checkbox
               checked={task.isComplete}
               onChange={(event, isChecked)=>{
-                
-                const updatedTasks = [...tasks];
-                // updatedTasks[index] = {
-                //   ...updatedTasks[index],
-                //   isComplete: event.target.checked
-                // };
-                updatedTasks.map((value)=>{
-                  if (value.id === task.id)
-                    value.isComplete = isChecked;
-                  return value;
-                })
-                setTasks(updatedTasks);
+                dispatch({type: "toggleCheck", payload: { todo: {...task, isChecked}}})
               }}
               icon={<CheckCircleOutline/>}
               checkedIcon={<CheckCircle/>}

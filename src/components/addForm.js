@@ -5,35 +5,18 @@ import SnackbarAlert from './muic/snackbarAlert';
 
 
 export default function AddForm(){
-  const  {tasks, setTasks}= useContext(TaskContext);
+  const  { dispatch}= useContext(TaskContext);
   const [taskTitle, setTaskTitle] = useState("");
 
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
   const [catchedError, setCatchedError] = useState("");
-  // const handleClose = (event, reason) => {
-  //   if (reason === 'clickaway') 
-  //     return;
-  //   setOpen(false);
-  //   setErrorOpen(false);
-  // };
 
-  const generateID= ()=>{
-    return parseInt(Date.now() + Math.random().toString().slice(2, 6));
-
-  }
+  
 
   const handleClick = (event)=>{
     try {
-      if(taskTitle.length < 2)
-        throw new Error("عنوان المهمة لا يقل عن حرفين");
-      setTasks([
-        ...tasks, {
-          id: generateID(),
-          title: taskTitle,
-          details: "",
-          isComplete: false,
-        }])
+      dispatch({type: "Create", payload: { todo: {title: taskTitle} }})
       setTaskTitle("");
       setOpen(true);
     } catch (error) {
